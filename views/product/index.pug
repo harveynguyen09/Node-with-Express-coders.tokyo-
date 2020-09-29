@@ -1,0 +1,26 @@
+extends ../layout/common.pug
+
+block content
+    
+    .container
+        h2 PRODUCT
+        form.ml-auto(action="/product/search",method="get",class="d-flex")
+            input(type="text",name="q", class="form-control",style="width:200px")
+            button(class="btn btn-primary ml-2") Search
+        .row
+            each item in products
+                .col-3
+                    .card(style='width:200px,height:1000px')
+                        img.card-img-top(src=item.image, alt='Card image', style='width:100%')
+                        .card-body
+                        h6.card-title= item.name
+                        //- p.card-text= item.description
+                        a.btn.btn-primary(href='#') See Profile
+        ul.pagination(action="/product",method="post")
+            li.page-item
+                a.page-link(href='#') Previous
+            each item in paginations
+                li.page-item
+                    a.page-link(href='#')= item
+            li.page-item
+                a.page-link(href='#') Next
